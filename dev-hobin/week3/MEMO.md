@@ -28,9 +28,9 @@ sort((next, prev) => prev > next ? -1 : 1);
 
 위와 같이 쓰면 헷갈리지 않게 정렬을 쓸 수 있었다.
 
-## 기본 정렬
+## 여러 정렬 알고리즘
 
-강의에서는 아이템들간의 비교 로직을 구현하지 않았는데 하지 않았는데 compare 인자를 추가하여 보충하였다.  
+강의에서는 아이템들간의 비교 로직을 구현하지 않았는데 compare 인자를 추가하여 보충하였다.  
 compare의 시그니처는 자연스럽게 자바스크립트 내장 메서드 sort와 같게 하였다.
 
 ### 버블 정렬
@@ -86,3 +86,41 @@ function insertionSort(arr, compare) {
   }
 }
 ```
+
+### 합병 정렬
+
+```js
+function merge(left, right, compare) {
+  const result = [];
+  let i = 0;
+  let j = 0;
+  while (i < left.length && j < right.length) {
+    if (compare(right[j], left[i]) < 0) {
+      result.push(right[j++]);
+    } else {
+      result.push(left[i++]);
+    }
+  }
+
+  if (i < left.length) result.push(...left.slice(i));
+  if (j < right.length) result.push(...right.slice(j));
+
+  return result;
+}
+
+function mergeSort(arr, compare) {
+  if (arr.length <= 1) return [...arr];
+
+  const mid = Math.floor(arr.length / 2);
+  const left = arr.slice(0, mid);
+  const right = arr.slice(mid);
+
+  return merge(mergeSort(left, compare), mergeSort(right, compare), compare);
+}
+```
+
+처음에는 합병 정렬의 공간 복잡도가 왜 O(n)인지 이해가 안갔다.  
+찾아본 결과 재귀함수의 공간 복잡도를 생각할 때는 호출 스택이 쌓이고 해소되는 과정까지 생각해보아야 한다. 스택이 해소될 때 메모리가 함께 해제되기 때문이다.  
+(시간 복잡도와는 다른것이 이미 로직을 수행하는데 사용한 시간은 되돌릴 수 없는 것이지만 공간은 필요한만큼 사용했으면 이후에 정리하여 다시 사용 가능한 공간이 될 수 있다.)
+
+참고 : [왜 합병 정렬의 공간 복잡도가 O(n)인가?](https://stackoverflow.com/questions/10342890/merge-sort-time-and-space-complexity)
