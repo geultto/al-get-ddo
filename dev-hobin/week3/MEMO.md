@@ -124,3 +124,43 @@ function mergeSort(arr, compare) {
 (시간 복잡도와는 다른것이 이미 로직을 수행하는데 사용한 시간은 되돌릴 수 없는 것이지만 공간은 필요한만큼 사용했으면 이후에 정리하여 다시 사용 가능한 공간이 될 수 있다.)
 
 참고 : [왜 합병 정렬의 공간 복잡도가 O(n)인가?](https://stackoverflow.com/questions/10342890/merge-sort-time-and-space-complexity)
+
+### 퀵 정렬
+
+```js
+function swap(arr, i, j) {
+  const temp = arr[i];
+  arr[i] = arr[j];
+  arr[j] = temp;
+}
+
+function pivot(arr, compare, start = 0, end = arr.length - 1) {
+  let pivotIndex = start;
+  const pivotValue = arr[pivotIndex];
+  for (let i = start; i <= end; i++) {
+    if (compare(arr[i], pivotValue) < 0) {
+      swap(arr, pivotIndex + 1, i);
+      pivotIndex += 1;
+    }
+  }
+  swap(arr, pivotIndex, start);
+
+  console.log(start, end, arr);
+  return pivotIndex;
+}
+
+function quickSort(arr, compare, start = 0, end = arr.length - 1) {
+  if (start >= end) return;
+
+  const pivotIndex = pivot(arr, compare, start, end);
+
+  quickSort(arr, compare, start, pivotIndex - 1);
+  quickSort(arr, compare, pivotIndex + 1, end);
+}
+```
+
+### 기수 정렬
+
+(코드 생략)
+
+여러 조합으로 모든 데이터를 표현할 수 있는 바구니(0 ~ 9)를 만들고 바구니에 데이터를 반복하여 재배치하는 과정에서 자연스럽게 정렬이 되는 방식이 참 신기한 접근이라고 생각했다. (default로 0 바구니를 사용한 것도...)
