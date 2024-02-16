@@ -263,6 +263,18 @@ radixSort([23,345,5467,12,2345,9852])
 ```
 
 
+## 참고할만한 링크
+**강의에서 나왔던 링크들**
+[visualgo](https://visualgo.net/en) - 정렬 실행을 시각화해서 볼 수 있었다
+[sorting algorithms](https://www.toptal.com/developers/sorting-algorithms) - 각 정렬의 속도 차이를 시각적으로 쉽게 볼 수 있었다.
+
+
+**제가 찾아봤던 글들 중에 좋았던 글들 링크입니다.**
+[재귀가 풀리는 4단계 접근법](https://velog.io/@eddy_song/you-can-solve-recursion)
+[갓로초 님의 알고리즘 정리](https://www.zerocho.com/category/Algorithm)
+
+
+
 ## 느낀 점
 재귀, 분할정복 개념에 대해 익숙하다면 문제 없이 이해했을 것 같습니다.   
-으음....... 어우... 사실 전 좀 힘들었어요 ^_^
+으음....... 어우... 사실 전 좀 힘들었어요 ^_^   
