@@ -194,4 +194,6 @@ function radixSort(nums) {
 radixSort([23, 345, 5467, 12, 2345, 9852]);
 ```
 
+단 기수 정렬은 제자리 정렬이 아니기 때문에 추가 메모리가 필요하다.
+
 > Stable sort
